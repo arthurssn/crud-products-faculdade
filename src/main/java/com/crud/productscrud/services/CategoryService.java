@@ -1,7 +1,19 @@
 package com.crud.productscrud.services;
 
+import com.crud.productscrud.interfaces.ICRUD;
 import com.crud.productscrud.models.Category;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.crud.productscrud.repositories.CategoryRepository;
+import org.springframework.stereotype.Service;
 
-public interface CategoryService extends JpaRepository<Category, Long> {
+@Service
+public class CategoryService extends CRUDService<Category> implements ICRUD<Category> {
+    public CategoryService(CategoryRepository categoryRepository) {
+        super(categoryRepository);
+    }
+
+    @Override
+    protected void updateFields(Category existingItem, Category newItem) {
+        existingItem.setName(newItem.getName());
+        existingItem.setProducts(newItem.getProducts());
+    }
 }
