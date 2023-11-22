@@ -20,7 +20,6 @@ public class Category {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-//    @JsonIgnore
     private List<Product> products;
 
 
