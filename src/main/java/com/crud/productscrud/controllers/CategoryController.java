@@ -13,4 +13,10 @@ public class CategoryController extends CRUDController<Category> {
     public CategoryController(CategoryService service) {
         super(service);
     }
+
+    @Override
+    protected void updateFields(Category existingItem, Category newItem) {
+        existingItem.setName(newItem.getName());
+        existingItem.setProducts(newItem.getProducts());
+    }
 }
