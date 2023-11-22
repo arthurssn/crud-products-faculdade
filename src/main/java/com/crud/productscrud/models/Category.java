@@ -7,12 +7,22 @@ import java.util.List;
 @Entity
 @Table(name = "categories")
 public class Category {
+    public Category(Long id) {
+        this.id = id;
+    }
+
+    public Category() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+//    @JsonIgnore
     private List<Product> products;
+
 
     public Long getId() {
         return id;
